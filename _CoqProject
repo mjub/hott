@@ -1,2 +1,9 @@
--R theories Hello
+# Namespace.
+-R theories HoTT
+
+# Compiler flags.
 -arg -indices-matter
+-arg -noinit
+
+# "Gallina" flags.
+-arg "-unset 'Elimination Schemes'"
