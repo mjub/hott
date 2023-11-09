@@ -1,2 +1,4 @@
-# [mjub/coq-template](https://github.com/mjub/coq-template)
-A set of sensible base files for my [Coq](https://coq.inria.fr/) projects
+# [mjub/hott](https://github.com/mjub/hott)
+My own implementation of [homotopy type theory](https://ncatlab.org/nlab/show/homotopy+type+theory) in [Coq](https://coq.inria.fr/).
+
+Documentation is available at https://mjub.github.io/hott/.
