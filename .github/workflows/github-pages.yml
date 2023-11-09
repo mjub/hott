@@ -1,0 +1,40 @@
+---
+name: GitHub Pages
+on:
+  push: {branches: [primary], paths: ['**.v']}
+
+jobs:
+  build-artifact:
+    runs-on: ubuntu-latest
+    container: archlinux
+
+    steps:
+      - name: Install Coq
+        run: pacman -Sy --noconfirm base-devel coq
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build documentation
+        run: make coq-html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with: {path: 'html/'}
+
+  deploy-pages:
+    needs: build-artifact
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

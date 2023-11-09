@@ -1,0 +1,35 @@
+{
+    // Use a slightly modified Coq Docker image, to also include the VSCode language server.
+    "build": {
+        "dockerfile": "Dockerfile.coq"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Easy access to Unicode math characters.
+                "GuidoTapia2.unicode-math-vscode",
+                "maximedenes.vscoq",
+                // Preview the generated documentation at http://127.0.0.1:31517/.
+                "ritwickdey.LiveServer"
+            ],
+            "settings": {
+                // Font ligatures are nice in this case.
+                "editor.fontLigatures": true,
+                // Font size is broken with VSCoq, so you need to zoom.
+                "editor.fontSize": 13,
+                "window.zoomLevel": 2,
+                "[coq]": {
+                    "editor.tabSize": 2,
+                    // Because we want to use fancy Unicode characters sometimes.
+                    "editor.unicodeHighlight.ambiguousCharacters": false
+                },
+                "liveServer.settings.donotShowInfoMsg": true,
+                "liveServer.settings.NoBrowser": true,
+                // Spells out C = 3, O = 15, Q = 17.
+                "liveServer.settings.port": 31517,
+                // Change this if you use a custom folder name for the generated documentation.
+                "liveServer.settings.root": "/html"
+            }
+        }
+    }
+}
