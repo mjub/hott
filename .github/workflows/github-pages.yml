@@ -6,13 +6,17 @@ on:
 jobs:
   build-artifact:
     runs-on: ubuntu-latest
-    container:
-      image: coqorg/coq
-      options: -e "HOME=/home/coq" --user coq --workdir "/home/coq"
+    container: archlinux
 
     steps:
+      - name: Install Coq
+        run: pacman -Sy --noconfirm base-devel coq
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Build documentation
-        run: cd /home/coq && mkdir repo && git clone "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" repo && cd repo && make coq-html
+        run: make coq-html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
