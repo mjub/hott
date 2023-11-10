@@ -6,11 +6,12 @@ on:
 jobs:
   build-artifact:
     runs-on: ubuntu-latest
-    container:
-      image: coqorg/coq
-      options: --user root
+    container: coqorg/coq
 
     steps:
+      - name: Fix file permissions
+        run: sudo chown --recursive coq:coq /__w
+
       - name: Checkout
         uses: actions/checkout@v4
 
