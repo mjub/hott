@@ -6,11 +6,14 @@ on:
 jobs:
   build-artifact:
     runs-on: ubuntu-latest
-    container: archlinux
+    container: coqorg/coq
 
     steps:
-      - name: Install Coq
-        run: pacman -Sy --noconfirm base-devel coq
+      - name: Install the VSCoq language server
+        run: opam update --yes && opam install --yes vscoq-language-server
+
+      - name: Elevate privileges
+        run: sudo su
 
       - name: Checkout
         uses: actions/checkout@v4
