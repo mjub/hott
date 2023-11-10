@@ -10,11 +10,11 @@ jobs:
 
     steps:
       - name: Fix file permissions
-        run: sudo chown coq --group coq . /__w /__t && ln --symbolic /home/coq/.opam .opam
-  
+        run: sudo chown coq:coq . /__w /__t && ln --symbolic /home/coq/.opam .opam
+
       - name: Checkout
         uses: actions/checkout@v4
-  
+
       - name: Build documentation
         run: make coq-html
 
