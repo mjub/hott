@@ -36,3 +36,18 @@ Notation "A × B" := (∑ _ : A, B)
 
 Notation "( x , .. , y , z )" := (pair x (.. (pair y z) ..))
   (at level 0, format "( '[' x ,  '/' .. ,  '/' y ,  '/' z ']' )").
+
+Section Sigma.
+  Context {A : 𝑈} {B : A → 𝑈}.
+
+  Definition sigma_elim (C : (∑ x, B x) → 𝑈) (g : ∏ x (y : B x), C (x, y)) p : C p :=
+    match p with pair x y => g x y end.
+
+  Definition pr₁ : (∑ x, B x) → A := sigma_elim _ (λ x _, x).
+  Definition pr₂ : ∏ p : ∑ x, B x, B (pr₁ p) := sigma_elim _ (λ _ y, y).
+End Sigma.
+
+Notation "p .1" := (pr₁ p)
+  (at level 1, left associativity, format "p .1").
+Notation "p .2" := (pr₂ p)
+  (at level 1, left associativity, format "p .2").
