@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Fix file permissions
-        run: sudo chown --recursive coq:coq /__w
+        run: sudo chown --recursive coq:coq /__w /home
 
       - name: Checkout
         uses: actions/checkout@v4
