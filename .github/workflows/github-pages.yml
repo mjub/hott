@@ -6,17 +6,16 @@ on:
 jobs:
   build-artifact:
     runs-on: ubuntu-latest
-    container: coqorg/coq
+    container:
+      image: coqorg/coq
+      options: --user root
 
     steps:
-      - name: Fix file permissions
-        run: sudo chown --recursive coq:coq /__w /home
-
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build documentation
-        run: make coq-html
+        run: chown --recursive coq:coq . && su coq --group coq make coq-html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
