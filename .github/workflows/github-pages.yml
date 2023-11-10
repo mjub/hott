@@ -9,9 +9,12 @@ jobs:
     container: coqorg/coq
 
     steps:
-      - name: Clone repository
-        run: mkdir repo && git clone "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" repo && cd repo
-
+      - name: Fix file permissions
+        run: sudo chown coq --group coq . /__w /__t && ln --symbolic /home/coq/.opam .opam
+  
+      - name: Checkout
+        uses: actions/checkout@v4
+  
       - name: Build documentation
         run: make coq-html
 
