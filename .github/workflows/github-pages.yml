@@ -6,14 +6,13 @@ on:
 jobs:
   build-artifact:
     runs-on: ubuntu-latest
-    container: coqorg/coq
+    container:
+      image: coqorg/coq
+      options: -e "HOME=/home/coq" --workdir "/home/coq"
 
     steps:
-      - name: Fix file permissions
-        run: sudo chown coq:coq . /__w /__t && ln --symbolic /home/coq/.opam .opam
-
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Clone repository
+        run: mkdir repo && git clone "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" repo && cd repo
 
       - name: Build documentation
         run: make coq-html
