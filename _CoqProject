@@ -6,4 +6,5 @@
 -arg -noinit
 
 # "Gallina" flags.
+-arg "-set 'Universe Polymorphism'"
 -arg "-unset 'Elimination Schemes'"
