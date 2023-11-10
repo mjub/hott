@@ -6,12 +6,11 @@ on:
 jobs:
   build-artifact:
     runs-on: ubuntu-latest
-    container: coqorg/coq
+    container:
+      image: coqorg/coq
+      options: --user root
 
     steps:
-      - name: Elevate privileges
-        run: sudo su
-
       - name: Checkout
         uses: actions/checkout@v4
 
