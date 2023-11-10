@@ -1,7 +1,7 @@
 ---
 name: GitHub Pages
 on:
-  push: {branches: [primary], paths: ['**.v']}
+  push: {branches: [primary], paths: ['**.v', '.github/workflows/github-pages.yml']}
 
 jobs:
   build-artifact:
