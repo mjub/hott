@@ -9,9 +9,6 @@ jobs:
     container: coqorg/coq
 
     steps:
-      - name: Install the VSCoq language server
-        run: opam update --yes && opam install --yes vscoq-language-server
-
       - name: Elevate privileges
         run: sudo su
 
