@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: coqorg/coq
-      options: -e "HOME=/home/coq" --workdir "/home/coq"
+      options: -e "HOME=/home/coq" --user coq --workdir "/home/coq"
 
     steps:
       - name: Clone repository
-        run: mkdir repo && git clone "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" repo && cd repo
+        run: cd /home/coq && mkdir repo && git clone "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" repo && cd repo
 
       - name: Build documentation
         run: make coq-html
