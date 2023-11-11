@@ -1,5 +1,7 @@
 (** This file is part of [https://github.com/mjub/hott]. *)
 
+Require Export Ltac.
+
 
 (** * Martin-Löf Type Theory, Part I: The Essentials
 
