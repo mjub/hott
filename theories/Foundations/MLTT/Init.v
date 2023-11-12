@@ -25,7 +25,7 @@ Notation "∏ x .. y , B" := (forall x, .. (forall y, B) ..)
 
 (** Nondependent version, i.e. ordinary functions [A → B]. *)
 
-Notation "A → B" := (∏ _ : A, B)
+Notation "A → B" := (∏ (_ : A), B)
   (at level 99, B at level 200, right associativity).
 
 (** [λ]-abstractions. *)
@@ -55,11 +55,6 @@ Notation "∑ x .. y , B" := (Sigma _ (λ x, .. (Sigma _ (λ y, B)) ..))
 Notation "( x , .. , y , z )" := (pair x (.. (pair y z) ..))
   (at level 0, format "( '[' x ,  '/' .. ,  '/' y ,  '/' z ']' )").
 
-(** Nondependent version, i.e. ordinary cartesian product [A × B]. *)
-
-Notation "A × B" := (∑ _ : A, B)
-  (at level 40, right associativity).
-
 (** Elimination principles for [∑]-types. *)
 
 Section Sigma.
@@ -67,24 +62,24 @@ Section Sigma.
 
   Definition ind_sigma (C : (∑ x, B x) → 𝑈) (f : ∏ x (y : B x), C (x, y)) p :=
     match p with
-    | pair x y => f x y
+    | (x, y) => f x y
     end.
 
   Definition rec_sigma {C : 𝑈} (f : ∏ x, B x → C) p :=
     match p with
-    | pair x y => f x y
+    | (x, y) => f x y
     end.
 
   (** Projections. *)
 
   Definition pr₁ (p : ∑ x, B x) :=
     match p with
-    | pair x y => x
+    | (x, y) => x
     end.
 
   Definition pr₂ (p : ∑ x, B x) : B (pr₁ p) :=
     match p with
-    | pair x y => y
+    | (x, y) => y
     end.
 
 End Sigma.
