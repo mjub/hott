@@ -3,6 +3,7 @@
     "build": {
         "dockerfile": "Dockerfile.coq"
     },
+    "forwardPorts": [31517],
     "customizations": {
         "vscode": {
             "extensions": [
